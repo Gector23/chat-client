@@ -1,20 +1,47 @@
-import { useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { Container } from "@material-ui/core";
 
 import Login from "./containers/Login";
+import Chat from "./containers/Chat";
 
 const App = () => {
-  const [user, setUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  console.log(user);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLoggedIn= useCallback(() => {
+    setIsLoggedIn(true);
+  }, []);
+
+  const handleLoggedOut = useCallback(() => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+  }, []);
 
   return (
     <div className="App">
-      <Container>
+      <Container component="main">
         <Switch>
           <Route exact path="/login">
-            <Login onUserChange={setUser} />
+            {!isLoggedIn ? (
+              <Login onLoggedIn={handleLoggedIn} />
+            ) : (
+              <Redirect to="/chat" />
+            )}
+          </Route>
+          <Route exact path="/chat">
+            {isLoggedIn ? (
+              <Chat onLoggedOut={handleLoggedOut} />
+            ) : (
+              <Redirect to="/login" />
+            )}
           </Route>
         </Switch>
       </Container>
