@@ -31,12 +31,10 @@ const Chat = ({ onLoggedOut }) => {
 
     socketRef.current.on("c:allUsers", allUsers => {
       setAllUsers(allUsers);
-      console.log(allUsers);
     });
 
     socketRef.current.on("c:onlineUsers", onlineUsers => {
       setOnlineUsers(onlineUsers);
-      console.log(onlineUsers);
     });
 
     socketRef.current.on("c:message", message => {
@@ -44,11 +42,6 @@ const Chat = ({ onLoggedOut }) => {
         ...messages,
         message
       ]);
-      console.log(message);
-    });
-
-    socketRef.current.on("c:info", info => {
-      console.log(info);
     });
 
     return () => {
@@ -89,7 +82,7 @@ const Chat = ({ onLoggedOut }) => {
         />
       </Grid>
       <Grid item xs={12} sm={6} md={8}>
-        <ChatBoard messages={messages} onMessage={handleMessage} />
+        <ChatBoard messages={messages} inputDisabled={userRestrictions.isMuted} onMessage={handleMessage} />
       </Grid>
     </Grid>
   );

@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const ChatBoard = ({ messages, onMessage }) => {
+const ChatBoard = ({ messages, inputDisabled, onMessage }) => {
   const classes = useStyles();
 
   return (
@@ -27,7 +27,7 @@ const ChatBoard = ({ messages, onMessage }) => {
           <Messages messages={messages} />
         </Grid>
         <Grid item>
-          <ChatInput onMessage={onMessage} />
+          <ChatInput onMessage={onMessage} disabled={inputDisabled} />
         </Grid>
       </Grid>
     </Paper>

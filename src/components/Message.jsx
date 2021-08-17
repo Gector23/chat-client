@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginBottom: theme.spacing(1),
     padding: theme.spacing(1),
     borderRadius: "8px",
     backgroundColor: theme.palette.grey[100]
@@ -15,25 +14,29 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiAvatar-root": {
       marginRight: theme.spacing(2)
     }
-  }
+  },
+  body: props => ({
+    color: theme.palette[props.color][props.shade],
+    wordBreak: "break-all"
+  })
 }));
 
-const Message = ({ login, text, date }) => {
-  const classes = useStyles();
+const Message = ({ message }) => {
+  const classes = useStyles(message.textColor);
 
   return (
     <div className={classes.root}>
       <div className={classes.head}>
-        <Avatar>{login[0]}</Avatar>
-        <Typography variant="subtitle1">
-          {login}
+        <Avatar>{message.login[0]}</Avatar>
+        <Typography className={classes.coloredText} variant="subtitle1">
+          {message.login}
         </Typography>
       </div>
-      <Typography variant="body2">
-        {text}
+      <Typography className={classes.body} variant="body2">
+        {message.text}
       </Typography>
       <Typography variant="caption">
-        {new Date(date).toLocaleString()}
+        {new Date(message.date).toLocaleString()}
       </Typography>
     </div>
   );

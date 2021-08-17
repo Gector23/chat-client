@@ -16,7 +16,7 @@ const App = () => {
     }
   }, []);
 
-  const handleLoggedIn= useCallback(() => {
+  const handleLoggedIn = useCallback(() => {
     setIsLoggedIn(true);
   }, []);
 
@@ -29,6 +29,13 @@ const App = () => {
     <div className="App">
       <Container component="main">
         <Switch>
+          <Route exact path="/">
+            {isLoggedIn ? (
+              <Redirect to="/chat" />
+            ) : (
+              <Redirect to="/login" />
+            )}
+          </Route>
           <Route exact path="/login">
             {!isLoggedIn ? (
               <Login onLoggedIn={handleLoggedIn} />

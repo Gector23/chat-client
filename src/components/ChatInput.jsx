@@ -9,14 +9,14 @@ const validationRules = {
   }
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     flexDirection: "column"
   }
 }));
 
-const ChatInput = ({ onMessage }) => {
+const ChatInput = ({ onMessage, disabled }) => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const classes = useStyles();
 
@@ -27,18 +27,16 @@ const ChatInput = ({ onMessage }) => {
   };
 
   return (
-    <div>
-      <form className={classes.root} onSubmit={handleSubmit(handleMessage)}>
-        <FormControl error={errors.message ? true : false}>
-          <InputLabel htmlFor="message-input">Message</InputLabel>
-          <Input id="message-input" required aria-describedby="message-input-text" {...register("message", { ...validationRules.message })} />
-          <FormHelperText id="message-input-text">{errors.message?.message || "Type a message"}</FormHelperText>
-        </FormControl>
-        <Button variant="outlined" color="primary" type="submite">
-          Send
-        </Button>
-      </form>
-    </div>
+    <form className={classes.root} onSubmit={handleSubmit(handleMessage)}>
+      <FormControl error={errors.message ? true : false} disabled={disabled}>
+        <InputLabel htmlFor="message-input">Message</InputLabel>
+        <Input id="message-input" required aria-describedby="message-input-text" {...register("message", { ...validationRules.message })} />
+        <FormHelperText id="message-input-text">{errors.message?.message || "Type a message"}</FormHelperText>
+      </FormControl>
+      <Button variant="outlined" color="primary" type="submite" disabled={disabled}>
+        Send
+      </Button>
+    </form>
   );
 };
 
