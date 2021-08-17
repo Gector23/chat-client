@@ -7,7 +7,10 @@ const validationRules = {
   login: {
     required: { value: true, message: "Login is required" },
     minLength: { value: 3, message: "Login min length is 3" },
-    maxLength: { value: 12, message: "Login max length is 12" }
+    maxLength: { value: 12, message: "Login max length is 12" },
+    validate: {
+      specialCharacters: v => /^[A-Za-z0-9]+$/.test(v) ? null : "Special characters are prohibited"
+    }
   },
   password: {
     required: { value: true, message: "Password is required" },
@@ -39,7 +42,12 @@ const Login = ({ onLoggedIn }) => {
       localStorage.setItem("token", res.data.token);
       reset();
     } catch (err) {
-      if (err.response.data.message === "Incorrect password") {
+      if (err.response.data.message === "Incorrect login") {
+        setError("password", {
+          message: "Incorrect login"
+        });
+      }
+      else if (err.response.data.message === "Incorrect password") {
         setError("password", {
           message: "Incorrect password"
         });

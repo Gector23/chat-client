@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { Container } from "@material-ui/core";
 
 import Login from "./containers/Login";
-import Chat from "./containers/Chat";
+import MainPage from "./components/MainPage";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,23 +29,16 @@ const App = () => {
     <div className="App">
       <Container component="main">
         <Switch>
-          <Route exact path="/">
-            {isLoggedIn ? (
-              <Redirect to="/chat" />
-            ) : (
-              <Redirect to="/login" />
-            )}
-          </Route>
           <Route exact path="/login">
             {!isLoggedIn ? (
               <Login onLoggedIn={handleLoggedIn} />
             ) : (
-              <Redirect to="/chat" />
+              <Redirect to="/" />
             )}
           </Route>
-          <Route exact path="/chat">
+          <Route exact path="/">
             {isLoggedIn ? (
-              <Chat onLoggedOut={handleLoggedOut} />
+              <MainPage onLoggedOut={handleLoggedOut} />
             ) : (
               <Redirect to="/login" />
             )}

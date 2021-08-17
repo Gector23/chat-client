@@ -44,10 +44,7 @@ const Chat = ({ onLoggedOut }) => {
       ]);
     });
 
-    return () => {
-      socketRef.current.emit("s:userOffline");
-      socketRef.current.disconnect();
-    };
+    return () => socketRef.current.disconnect();
   }, [onLoggedOut]);
 
   const handleMessage = text => {
