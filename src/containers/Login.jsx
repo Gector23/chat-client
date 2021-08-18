@@ -76,17 +76,29 @@ const Login = ({ onLoggedIn }) => {
           <form onSubmit={handleSubmit(handleLogin)}>
             <FormControl fullWidth error={errors.login ? true : false}>
               <InputLabel htmlFor="login-input">Login*</InputLabel>
-              <Input id="login-input" required aria-describedby="login-input-text" {...register("login", { ...validationRules.login })} />
+              <Input
+                id="login-input"
+                required aria-describedby="login-input-text"
+                {...register("login", { ...validationRules.login })}
+              />
               <FormHelperText id="login-input-text">{errors.login?.message || "Enter login"}</FormHelperText>
             </FormControl>
             <FormControl fullWidth error={errors.password ? true : false}>
               <InputLabel htmlFor="password-input">Password*</InputLabel>
-              <Input id="password-input" required aria-describedby="password-input-text" {...register("password", { ...validationRules.password })} />
+              <Input
+                id="password-input"
+                required aria-describedby="password-input-text"
+                {...register("password", { ...validationRules.password })}
+              />
               <FormHelperText id="password-input-text">{errors.password?.message || "Enter password"}</FormHelperText>
             </FormControl>
             <FormControl fullWidth error={errors.email ? true : false}>
               <InputLabel htmlFor="email-input">Email</InputLabel>
-              <Input id="email-input" aria-describedby="email-input-text" {...register("email", { ...validationRules.email })} />
+              <Input
+                id="email-input"
+                aria-describedby="email-input-text"
+                {...register("email", { ...validationRules.email })}
+              />
               <FormHelperText id="email-input-text">{errors.email?.message || "Enter email"}</FormHelperText>
             </FormControl>
             <Button fullWidth variant="outlined" color="primary" type="submite">
