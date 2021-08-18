@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -18,9 +19,18 @@ const useStyles = makeStyles((theme) => ({
 
 const Messages = ({ messages }) => {
   const classes = useStyles();
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight - containerRef.current.clientHeight;
+    }, 10);
+
+    return () => clearInterval(timerId);
+  });
 
   return (
-    <Grid className={classes.root} container direction="column" alignItems="flex-start" wrap="nowrap">
+    <Grid ref={containerRef} className={classes.root} container direction="column" alignItems="flex-start" wrap="nowrap">
       {messages.map((message, i) => (
         message.type === "info" ? (
           <Grid item key={i} className={`${classes.message} ${classes.infoMessage}`}>

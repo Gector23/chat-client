@@ -1,7 +1,7 @@
 import Header from "./Header";
 import Chat from "../containers/Chat";
 
-const MainPage = ({ onLoggedOut }) => {
+const HomePage = ({ onLoggedOut }) => {
   return (
     <div>
       <Header onLoggedOut={onLoggedOut} />
@@ -10,4 +10,4 @@ const MainPage = ({ onLoggedOut }) => {
   );
 };
 
-export default MainPage;
+export default HomePage;

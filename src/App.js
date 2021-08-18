@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { Container } from "@material-ui/core";
 
 import Login from "./containers/Login";
-import MainPage from "./components/MainPage";
+import HomePage from "./components/HomePage";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,7 +38,7 @@ const App = () => {
           </Route>
           <Route exact path="/">
             {isLoggedIn ? (
-              <MainPage onLoggedOut={handleLoggedOut} />
+              <HomePage onLoggedOut={handleLoggedOut} />
             ) : (
               <Redirect to="/login" />
             )}

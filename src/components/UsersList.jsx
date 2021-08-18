@@ -1,4 +1,4 @@
-import { List, IconButton } from "@material-ui/core";
+import { List, Tooltip, IconButton } from "@material-ui/core";
 import SpeakerNotesOffIcon from '@material-ui/icons/SpeakerNotesOff';
 import BlockIcon from '@material-ui/icons/Block';
 
@@ -14,20 +14,24 @@ const UsersList = ({ users, withControls = false, onToggleMute, onToggleBlock })
         if (withControls) {
           userControls = (
             <>
-              <IconButton
-                size="small"
-                color={user.isMuted ? "secondary" : "default"}
-                onClick={() => onToggleMute(user.login, user.isMuted)}
-              >
-                <SpeakerNotesOffIcon />
-              </IconButton>
-              <IconButton
-                size="small"
-                color={user.isBlocked ? "secondary" : "default"}
-                onClick={() => onToggleBlock(user.login, user.isBlocked)}
-              >
-                <BlockIcon />
-              </IconButton>
+              <Tooltip title={user.isMuted ? "unmute" : "mute"} placement="top">
+                <IconButton
+                  size="small"
+                  color={user.isMuted ? "secondary" : "default"}
+                  onClick={() => onToggleMute(user._id, user.isMuted)}
+                >
+                  <SpeakerNotesOffIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title={user.isMuted ? "unblock" : "block"} placement="top">
+                <IconButton
+                  size="small"
+                  color={user.isBlocked ? "secondary" : "default"}
+                  onClick={() => onToggleBlock(user._id, user.isBlocked)}
+                >
+                  <BlockIcon />
+                </IconButton>
+              </Tooltip>
             </>
           );
         }

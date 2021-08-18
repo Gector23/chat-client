@@ -43,7 +43,7 @@ const Login = ({ onLoggedIn }) => {
       reset();
     } catch (err) {
       if (err.response.data.message === "Incorrect login") {
-        setError("password", {
+        setError("login", {
           message: "Incorrect login"
         });
       }

@@ -51,19 +51,19 @@ const Chat = ({ onLoggedOut }) => {
     socketRef.current.emit("s:message", text);
   };
 
-  const handleToggleMute = (login, isMuted) => {
+  const handleToggleMute = (userId, isMuted) => {
     if (isMuted) {
-      socketRef.current.emit("s:unmuteUser", login);
+      socketRef.current.emit("s:unmuteUser", userId);
     } else {
-      socketRef.current.emit("s:muteUser", login);
+      socketRef.current.emit("s:muteUser", userId);
     }
   };
 
-  const handleToggleBlock = (login, isBlocked) => {
+  const handleToggleBlock = (userId, isBlocked) => {
     if (isBlocked) {
-      socketRef.current.emit("s:unblockUser", login);
+      socketRef.current.emit("s:unblockUser", userId);
     } else {
-      socketRef.current.emit("s:blockUser", login);
+      socketRef.current.emit("s:blockUser", userId);
     }
   };
 

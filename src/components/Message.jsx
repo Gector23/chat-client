@@ -27,9 +27,9 @@ const Message = ({ message }) => {
   return (
     <div className={classes.root}>
       <div className={classes.head}>
-        <Avatar>{message.login[0]}</Avatar>
+        <Avatar>{message.author[0]}</Avatar>
         <Typography className={classes.coloredText} variant="subtitle1">
-          {message.login}
+          {message.author}
         </Typography>
       </div>
       <Typography className={classes.body} variant="body2">
