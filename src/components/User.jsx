@@ -1,23 +1,23 @@
 import { ListItem, ListItemAvatar, Avatar, ListItemText } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   root: props => ({
     "& .MuiListItemIcon-root": {
       minWidth: "32px"
     },
     "& .MuiListItemText-root": {
-      color: props.color && props.shade ? theme.palette[props.color][props.shade] : "inherit"
+      color: props.color
     }
   })
 }));
 
 const User = ({ user, controls }) => {
-  const classes = useStyles(user.textColor);
+  const classes = useStyles({ color: user.color });
 
   return (
     <ListItem key={user._id} className={classes.root} >
       <ListItemAvatar>
-        <Avatar>{user.login[0]}</Avatar>
+        <Avatar src={user.avatar} alt={user.login} />
       </ListItemAvatar>
       <ListItemText primary={user.login} />
       {controls}

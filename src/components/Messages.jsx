@@ -22,11 +22,7 @@ const Messages = ({ messages }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    const timerId = setInterval(() => {
-      containerRef.current.scrollTop = containerRef.current.scrollHeight - containerRef.current.clientHeight;
-    }, 10);
-
-    return () => clearInterval(timerId);
+    containerRef.current.scrollTop = containerRef.current.scrollHeight - containerRef.current.clientHeight;
   });
 
   return (

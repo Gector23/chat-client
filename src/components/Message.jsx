@@ -15,14 +15,16 @@ const useStyles = makeStyles((theme) => ({
       marginRight: theme.spacing(2)
     }
   },
-  body: props => ({
-    color: theme.palette[props.color][props.shade],
+  body: {
     wordBreak: "break-all"
+  },
+  coloredText: props => ({
+    color: props.color
   })
 }));
 
 const Message = ({ message }) => {
-  const classes = useStyles(message.textColor);
+  const classes = useStyles({color: message.color});
 
   return (
     <div className={classes.root}>
@@ -32,7 +34,7 @@ const Message = ({ message }) => {
           {message.author}
         </Typography>
       </div>
-      <Typography className={classes.body} variant="body2">
+      <Typography className={`${classes.body} ${classes.coloredText}`} variant="body2">
         {message.text}
       </Typography>
       <Typography variant="caption">
