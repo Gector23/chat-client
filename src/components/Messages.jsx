@@ -25,7 +25,7 @@ const Messages = ({ messages }) => {
     containerRef.current.scrollTop = (
       containerRef.current.scrollHeight - containerRef.current.clientHeight
     );
-  });
+  }, [messages]);
 
   return (
     <Grid

@@ -73,6 +73,10 @@ const Login = ({ onLoggedIn }) => {
         setError('login', {
           message: 'Incorrect login',
         });
+      } else if (err.response.data.message === 'You are blocked') {
+        setError('login', {
+          message: 'You are blocked',
+        });
       } else if (err.response.data.message === 'Incorrect password') {
         setError('password', {
           message: 'Incorrect password',
