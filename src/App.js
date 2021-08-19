@@ -1,15 +1,15 @@
-import { useState, useEffect, useCallback } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import { Container } from "@material-ui/core";
+import { useState, useEffect, useCallback } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { Container } from '@material-ui/core';
 
-import Login from "./containers/Login";
-import HomePage from "./components/HomePage";
+import Login from './containers/Login';
+import HomePage from './components/HomePage';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
 
     if (token) {
       setIsLoggedIn(true);
@@ -21,7 +21,7 @@ const App = () => {
   }, []);
 
   const handleLoggedOut = useCallback(() => {
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
     setIsLoggedIn(false);
   }, []);
 
@@ -30,23 +30,15 @@ const App = () => {
       <Container component="main">
         <Switch>
           <Route exact path="/login">
-            {!isLoggedIn ? (
-              <Login onLoggedIn={handleLoggedIn} />
-            ) : (
-              <Redirect to="/" />
-            )}
+            {!isLoggedIn ? <Login onLoggedIn={handleLoggedIn} /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/">
-            {isLoggedIn ? (
-              <HomePage onLoggedOut={handleLoggedOut} />
-            ) : (
-              <Redirect to="/login" />
-            )}
+            {isLoggedIn ? <HomePage onLoggedOut={handleLoggedOut} /> : <Redirect to="/login" />}
           </Route>
         </Switch>
       </Container>
     </div>
   );
-}
+};
 
 export default App;

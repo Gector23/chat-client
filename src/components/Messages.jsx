@@ -1,20 +1,20 @@
-import { useRef, useEffect } from "react";
-import { Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { useRef, useEffect } from 'react';
+import { Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-import Message from "./Message";
-import InfoMessage from "./InfoMessage";
+import Message from './Message';
+import InfoMessage from './InfoMessage';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    overflow: "auto"
+    overflow: 'auto',
   },
   message: {
-    marginBottom: theme.spacing(1)
+    marginBottom: theme.spacing(1),
   },
   infoMessage: {
-    alignSelf: "center"
-  }
+    alignSelf: 'center',
+  },
 }));
 
 const Messages = ({ messages }) => {
@@ -22,13 +22,22 @@ const Messages = ({ messages }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    containerRef.current.scrollTop = containerRef.current.scrollHeight - containerRef.current.clientHeight;
+    containerRef.current.scrollTop = (
+      containerRef.current.scrollHeight - containerRef.current.clientHeight
+    );
   });
 
   return (
-    <Grid ref={containerRef} className={classes.root} container direction="column" alignItems="flex-start" wrap="nowrap">
+    <Grid
+      ref={containerRef}
+      className={classes.root}
+      container
+      direction="column"
+      alignItems="flex-start"
+      wrap="nowrap"
+    >
       {messages.map((message, i) => (
-        message.type === "info" ? (
+        message.type === 'info' ? (
           <Grid item key={i} className={`${classes.message} ${classes.infoMessage}`}>
             <InfoMessage message={message} />
           </Grid>

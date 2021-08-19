@@ -1,30 +1,30 @@
-import { Avatar, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Avatar, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(1),
-    borderRadius: "8px",
-    backgroundColor: theme.palette.grey[100]
+    borderRadius: '8px',
+    backgroundColor: theme.palette.grey[100],
   },
   head: {
-    display: "flex",
-    alignItems: "center",
+    display: 'flex',
+    alignItems: 'center',
     marginBottom: theme.spacing(1),
-    "& .MuiAvatar-root": {
-      marginRight: theme.spacing(2)
-    }
+    '& .MuiAvatar-root': {
+      marginRight: theme.spacing(2),
+    },
   },
   body: {
-    wordBreak: "break-all"
+    wordBreak: 'break-all',
   },
-  coloredText: props => ({
-    color: props.color
-  })
+  coloredText: (props) => ({
+    color: props.color,
+  }),
 }));
 
 const Message = ({ message }) => {
-  const classes = useStyles({color: message.color});
+  const classes = useStyles({ color: message.color });
 
   return (
     <div className={classes.root}>
@@ -37,9 +37,7 @@ const Message = ({ message }) => {
       <Typography className={`${classes.body} ${classes.coloredText}`} variant="body2">
         {message.text}
       </Typography>
-      <Typography variant="caption">
-        {new Date(message.date).toLocaleString()}
-      </Typography>
+      <Typography variant="caption">{new Date(message.date).toLocaleString()}</Typography>
     </div>
   );
 };

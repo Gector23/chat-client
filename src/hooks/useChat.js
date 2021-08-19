@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from "react";
-import io from "socket.io-client";
+import { useState, useEffect, useRef } from 'react';
+import io from 'socket.io-client';
 
-const useChat = onLoggedOut => {
+const useChat = (onLoggedOut) => {
   const socketRef = useRef(null);
   const [userRestrictions, setUserRestrictions] = useState({});
   const [onlineUsers, setOnlineUsers] = useState([]);
@@ -9,35 +9,32 @@ const useChat = onLoggedOut => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    socketRef.current = io("localhost:5000", {
+    socketRef.current = io('localhost:5000', {
       reconnectionDelayMax: 10000,
       auth: {
-        token: localStorage.getItem("token")
+        token: localStorage.getItem('token'),
       },
-      transports: ["websocket"]
+      transports: ['websocket'],
     });
 
-    socketRef.current.on("disconnect", () => {
+    socketRef.current.on('disconnect', () => {
       onLoggedOut();
     });
 
-    socketRef.current.on("c:userRestrictions", userRestrictions => {
-      setUserRestrictions(userRestrictions);
+    socketRef.current.on('c:userRestrictions', (restrictions) => {
+      setUserRestrictions(restrictions);
     });
 
-    socketRef.current.on("c:allUsers", allUsers => {
-      setAllUsers(allUsers);
+    socketRef.current.on('c:allUsers', (users) => {
+      setAllUsers(users);
     });
 
-    socketRef.current.on("c:onlineUsers", onlineUsers => {
-      setOnlineUsers(onlineUsers);
+    socketRef.current.on('c:onlineUsers', (users) => {
+      setOnlineUsers(users);
     });
 
-    socketRef.current.on("c:message", message => {
-      setMessages(messages => [
-        ...messages,
-        message
-      ]);
+    socketRef.current.on('c:message', (message) => {
+      setMessages((currentMessages) => [...currentMessages, message]);
     });
 
     return () => socketRef.current.disconnect();

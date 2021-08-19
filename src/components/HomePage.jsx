@@ -1,13 +1,11 @@
-import Header from "./Header";
-import Chat from "../containers/Chat";
+import Header from './Header';
+import Chat from '../containers/Chat';
 
-const HomePage = ({ onLoggedOut }) => {
-  return (
-    <div>
-      <Header onLoggedOut={onLoggedOut} />
-      <Chat onLoggedOut={onLoggedOut} />
-    </div>
-  );
-};
+const HomePage = ({ onLoggedOut }) => (
+  <div>
+    <Header onLoggedOut={onLoggedOut} />
+    <Chat onLoggedOut={onLoggedOut} />
+  </div>
+);
 
 export default HomePage;

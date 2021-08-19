@@ -1,20 +1,20 @@
-import { Paper, Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Paper, Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-import Messages from "./Messages";
-import ChatInput from "./ChatInput";
+import Messages from './Messages';
+import ChatInput from './ChatInput';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: "80vh",
+    height: '80vh',
     padding: theme.spacing(2),
-    "& .MuiGrid-container": {
-      height: "100%"
-    }
+    '& .MuiGrid-container': {
+      height: '100%',
+    },
   },
   messages: {
-    height: "80%"
-  }
+    height: '80%',
+  },
 }));
 
 const ChatBoard = ({ messages, inputDisabled, onMessage }) => {
