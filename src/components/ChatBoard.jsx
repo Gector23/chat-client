@@ -22,7 +22,7 @@ const ChatBoard = ({ messages, inputDisabled, onMessage }) => {
 
   return (
     <Paper className={classes.root}>
-      <Grid container direction="column" justifyContent="space-between">
+      <Grid container direction="column" justifyContent="space-between" wrap="nowrap">
         <Grid className={classes.messages} item>
           <Messages messages={messages} />
         </Grid>
